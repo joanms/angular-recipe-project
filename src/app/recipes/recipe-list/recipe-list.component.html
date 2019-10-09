@@ -9,6 +9,7 @@
         <!-- El is short for Element to distinguish it from the bindable recipe property in []-->
         <app-recipe-item
             *ngFor="let recipeEl of recipes"
-            [recipe]="recipeEl"></app-recipe-item> 
+            [recipe]="recipeEl"
+            (recipeSelected)="onRecipeSelected(recipeEl)"></app-recipe-item> 
     </div>
 </div>
