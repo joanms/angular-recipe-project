@@ -11,7 +11,7 @@ export class RecipeService {
     private recipes: Recipe[] = [
         new Recipe(
             'Boxty',
-            'This is just a test',
+            'Boxty (Irish: bacstaí) is a traditional Irish potato pancake.',
             'https://upload.wikimedia.org/wikipedia/commons/2/2a/Boxty_with_beef_and_squash.jpg',
             [
                 new Ingredient('Potatoes', 6),
@@ -19,7 +19,7 @@ export class RecipeService {
             ]),
         new Recipe(
             'Irish Stew',
-            'This is just a test',
+            'Irish stew (Irish: stobhach/Stobhach Gaelach) is a Lamb (or Mutton) and root vegetable stew native to Ireland.',
             'https://upload.wikimedia.org/wikipedia/commons/4/42/Irish_stew_2007.jpg',
             [
                 new Ingredient('Lamb', 1),
