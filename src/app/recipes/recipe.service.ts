@@ -19,7 +19,7 @@ export class RecipeService {
             ]),
         new Recipe(
             'Irish Stew',
-            'Irish stew (Irish: stobhach/Stobhach Gaelach) is a Lamb (or Mutton) and root vegetable stew native to Ireland.',
+            'Irish stew (Irish: stobhach/Stobhach Gaelach) is a lamb (or mutton) and root vegetable stew native to Ireland.',
             'https://upload.wikimedia.org/wikipedia/commons/4/42/Irish_stew_2007.jpg',
             [
                 new Ingredient('Lamb', 1),
