@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/Operators';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
@@ -25,6 +26,16 @@ export class DataStorageService {
         this.http
         .get<Recipe[]>(
             'https://ng-recipe-book-880f8.firebaseio.com/recipes.json')
+            /*
+            The following code handles cases where a user inputs a recipe without ingredients.
+            The instance of map on the next line of code is an rxjs operator
+            and the one on the line after that is a JavaScript array method
+            */
+            .pipe(map(recipes => {
+                return recipes.map(recipe => {
+                    return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
+                });
+            }))
             .subscribe(recipes => {
                 this.recipeService.setRecipes(recipes);
         });
