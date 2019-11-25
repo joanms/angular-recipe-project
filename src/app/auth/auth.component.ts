@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
     selector: 'app-auth',
@@ -8,12 +9,33 @@ import { NgForm } from '@angular/forms';
 export class AuthComponent {
     isLoginMode = true;
 
+    constructor(private authService: AuthService) {}
+
     onSwitchMode() {
         this.isLoginMode = !this.isLoginMode;
     }
 
     onSubmit(form: NgForm) {
-        console.log(form.value);
+        // The following adds an extra validation step that makes it harder to hack authentication
+        if  (!form.valid) {
+            return;
+        }
+        const email = form.value.email;
+        const password = form.value.password;
+
+        if (this.isLoginMode) {
+            // Code to log in goes here
+        } else {
+            this.authService.signup(email, password).subscribe(
+                resData => {
+                    console.log(resData);
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+        }
+
         form.reset();
     }
 }
