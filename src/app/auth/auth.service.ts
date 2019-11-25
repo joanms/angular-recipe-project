@@ -19,7 +19,7 @@ export class AuthService {
         return this.http.post<AuthResponseData>(
             'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAai_GCKmLGBP75ysGondnpOg9jc6DyNUw',
             {
-                email: EmailValidator,
+                email: email,
                 password: password,
                 returnSecureToken: true
             }
