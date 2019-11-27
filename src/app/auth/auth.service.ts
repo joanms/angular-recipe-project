@@ -4,13 +4,15 @@ import { catchError } from 'rxjs/Operators';
 import { throwError } from 'rxjs';
 
 // The interface code is not essential, but it's a good idea in Angular to define the types of data you're working with
-interface AuthResponseData {
+export interface AuthResponseData {
     kind: string;
     idToken: string;
     email: string;
     refreshToken: string;
     expiresIn: string;
     localId: string;
+    // The question mark makes it optional, because sign up doesn't use it but login does
+    registered?: boolean;
 }
 
 @Injectable({providedIn: 'root'})
@@ -38,6 +40,17 @@ export class AuthService {
                 }
                 return throwError(errorMessage);
             })
+        );
+    }
+
+    login(email: string, password: string) {
+        this.http.post<AuthResponseData>(
+            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAai_GCKmLGBP75ysGondnpOg9jc6DyNUw',
+            {
+                email: email,
+                password: password,
+                returnSecureToken: true
+            }
         );
     }
 }
