@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/Operators';
+import { throwError } from 'rxjs';
 
 // The interface code is not essential, but it's a good idea in Angular to define the types of data you're working with
 interface AuthResponseData {
@@ -23,6 +25,19 @@ export class AuthService {
                 password: password,
                 returnSecureToken: true
             }
+        )
+        .pipe(
+            catchError(errorRes => {
+                let errorMessage = 'An unkonwn error has occurred.';
+                if (!errorRes.error || !errorRes.error.error) {
+                    return throwError(errorMessage);
+                }
+                switch (errorRes.error.error.message) {
+                    case 'EMAIL_EXISTS':
+                            errorMessage = 'There is already an account with this email address';
+                }
+                return throwError(errorMessage);
+            })
         );
     }
 }
