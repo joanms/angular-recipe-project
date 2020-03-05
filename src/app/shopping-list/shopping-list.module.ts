@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ShoppingListComponent } from './shopping-list.component';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { SharedModule } from '../shared/shared.module';
+import { LoggingService } from '../logging.service';
 
 @NgModule({
     declarations: [
@@ -14,9 +15,10 @@ import { SharedModule } from '../shared/shared.module';
     imports: [
         FormsModule,
         RouterModule.forChild([
-            { path: '', component: ShoppingListComponent },
+            { path: 'shopping-list', component: ShoppingListComponent },
         ]),
         SharedModule
-    ]
+    ],
+    // providers: [LoggingService]
 })
 export class ShoppingListModule {}
