@@ -1,4 +1,5 @@
-import { Ingredient } from '../shared/ingredient.model';
+import { Ingredient } from '../../shared/ingredient.model';
+import { ADD_INGREDIENT } from './shopping-list.actions';
 import { Action } from '@ngrx/store';
 
 const initialState = {
@@ -10,7 +11,7 @@ const initialState = {
 
 export function shoppingListReducer(state = initialState, action: Action) {
     switch (action.type) {
-        case 'ADD_INGREDIENT':
+        case ADD_INGREDIENT:
             return {
                 /*
                 copy the state with the spread operator to pull out the
