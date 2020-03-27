@@ -17,7 +17,7 @@ export interface AuthResponseData {
     registered?: boolean;
   }
 
-@Injectable({})
+@Injectable()
   export class AuthEffects {
     @Effect()
     authLogin = this.actions$.pipe(
