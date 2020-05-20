@@ -63,7 +63,7 @@ export interface AuthResponseData {
         return this.http
         .post<AuthResponseData>(
           'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' +
-            environment.firebaseKey,
+            environment.firebaseAPIKey,
           {
             email: signupAction.payload.email,
             password: signupAction.payload.password,
@@ -91,7 +91,7 @@ export interface AuthResponseData {
         switchMap((authData: AuthActions.LoginStart) => {
             return this.http
             .post<AuthResponseData>(
-              'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseKey,
+              'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,
               {
                 email: authData.payload.email,
                 password: authData.payload.password,
@@ -114,8 +114,8 @@ export interface AuthResponseData {
     );
 
     @Effect({dispatch: false})
-    authSuccess = this.actions$.pipe(
-        ofType(AuthActions.AUTHENTICATE_SUCCESS),
+    authRedirect = this.actions$.pipe(
+        ofType(AuthActions.AUTHENTICATE_SUCCESS, AuthActions.LOGOUT),
         tap(() => {
             this.router.navigate(['/']);
         })
