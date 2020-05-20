@@ -52,7 +52,7 @@ export interface AuthResponseData {
         errorMessage = 'There is no account with that email address.';
         break;
       case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct.';
+        errorMessage = 'That password is not correct.';
         break;
     }
     return of(new AuthActions.AuthenticateFail(errorMessage));
